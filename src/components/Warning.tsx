@@ -11,8 +11,8 @@ export default function Warning({ isQuizziz }: warningProps) {
         }`}
       >
         {!isQuizziz
-          ? "You're don't in a quizziz game!"
-          : "You're in a quizzis game!"}
+          ? "Você não está em uma atividade de Quizizz agora!"
+          : "Você está em uma atividade do Quizziz agora!"}
       </h3>
     </div>
   );

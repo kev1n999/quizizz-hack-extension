@@ -6,6 +6,7 @@ import { isQuizziz } from "../utils/isQuizzis";
 import StartButton from "../components/StartButton";
 import { quizzizScraping } from "../utils/quizzizScraping";
 import Footer from "../components/Footer";
+import Tips from "../components/Tips";
 
 export default function Home() {
   const [currentTab, setCurrentTab] = useState<chrome.tabs.Tab | null>(null);
@@ -29,9 +30,10 @@ export default function Home() {
   };
 
   return (
-    <div className="h-[250px] bg-neutral-900 w-[350px]">
+    <div className="h-[320px] bg-neutral-900 w-[350px]">
       <Header />
       <Warning isQuizziz={onQuizziz} />
+      <Tips />
       <StartButton onClick={scraping} />
       <Footer />
     </div>

@@ -4,7 +4,7 @@ interface warningProps {
 
 export default function Warning({ isQuizziz }: warningProps) {
   return (
-    <div className="h-[30px] mb-[12px]">
+    <div className="h-[40px]">
       <h3
         className={`text-center ${
           isQuizziz ? "text-green-400" : "text-red-600"

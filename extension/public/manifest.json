@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "QuizzizHack",
+  "version": "1.0.0",
+  "description": "Uma extensão para visualizar respostas na plataforma de atividades Quizziz.",
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "logo.png",
+      "48": "logo.png",
+      "128": "logo.png"
+    }
+  },
+  "permissions": ["tabs", "activeTab", "scripting", "storage"],
+  "host_permissions": ["<all_urls>"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["build"]
+    }
+  ]
+}

@@ -9,6 +9,8 @@ export async function quizzizScraping(tab: chrome.tabs.Tab) {
       func: async () => {
         const runQuiz = async () => {
           try {
+            let codeImage: string | undefined;
+
             const startButton = document.querySelector(
               'button[data-cy="start-solo-game"]'
             ) as HTMLButtonElement;
@@ -34,6 +36,22 @@ export async function quizzizScraping(tab: chrome.tabs.Tab) {
                 optionsMap.set(idx, div.textContent?.trim() || "")
               );
 
+              const image = Array.from(document.querySelectorAll("img")).find(
+                (img) => img.alt.trim() === "Question image"
+              );
+
+              if (image) {
+                const res = await fetch(image.src, { mode: "cors" });
+                const blob = await res.blob();
+
+                codeImage = await new Promise<string>((resolve, reject) => {
+                  const reader = new FileReader();
+                  reader.onloadend = () => resolve(reader.result as string);
+                  reader.onerror = reject;
+                  reader.readAsDataURL(blob);
+                });
+              }
+
               const res = await fetch(
                 "http://localhost:3000/api/get-quizziz-answer",
                 {
@@ -42,9 +60,11 @@ export async function quizzizScraping(tab: chrome.tabs.Tab) {
                   body: JSON.stringify({
                     question: questionText,
                     options: Object.fromEntries(optionsMap),
+                    image: codeImage,
                   }),
                 }
               );
+
               const data = await res.json();
               const answer = data.response;
 

@@ -2,7 +2,7 @@
 
 - A simple extension to get the correct Quizziz Game answers!
 
-<img src="example.gif" width="820" height="240" />
+<img src="./example/example.gif" width="520" height="240" />
 
 ## Technologies used
 
